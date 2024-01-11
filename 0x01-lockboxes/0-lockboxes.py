@@ -6,7 +6,7 @@ Write a method that determines if all the boxes can be opened.
 """
 
 
-def append_recurse(unique_boxes, box, boxes):
+def append_recurse(u_bxs, box, boxes):
     """
     This recursive function appends each box uniquely
 
@@ -15,13 +15,12 @@ def append_recurse(unique_boxes, box, boxes):
     a box had not been visited before.
     """
 
-    if box in unique_boxes:
+    if box in u_bxs or box >= len(boxes):
         return
 
-    if box != 0:
-        unique_boxes.append(box)
+    u_bxs.append(box)
     for key in boxes[box]:
-        append_recurse(unique_boxes, key, boxes)
+        append_recurse(u_bxs, key, boxes)
 
 
 def canUnlockAll(boxes):
@@ -38,9 +37,9 @@ def canUnlockAll(boxes):
     Return:
         True if all boxes can be opened, else return False
     """
-    opened_boxes = []
+    opened_boxes = [0]
 
     for key in boxes[0]:
         append_recurse(opened_boxes, key, boxes)
 
-    return len(opened_boxes) == len(boxes) - 1
+    return len(opened_boxes) == len(boxes)
