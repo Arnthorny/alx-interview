@@ -20,7 +20,8 @@ def append_recurse(u_bxs, box, boxes):
 
     u_bxs.append(box)
     for key in boxes[box]:
-        append_recurse(u_bxs, key, boxes)
+        if key not in u_bxs:
+            append_recurse(u_bxs, key, boxes)
 
 
 def canUnlockAll(boxes):
@@ -37,6 +38,9 @@ def canUnlockAll(boxes):
     Return:
         True if all boxes can be opened, else return False
     """
+    if not(type(boxes) == list and boxes) or not all(type(box) == list for box
+                                                     in boxes):
+        return False
     opened_boxes = [0]
 
     for key in boxes[0]:
