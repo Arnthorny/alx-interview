@@ -15,12 +15,9 @@ def minOperations(n):
     """
     Minimum Operations function
     """
-    init_n = n
     total = 0
     divisor = 2
     while n > 1:
-        if divisor >= init_n:
-            return 0
         if n % divisor == 0:
             n = int(n / divisor)
             total += divisor
