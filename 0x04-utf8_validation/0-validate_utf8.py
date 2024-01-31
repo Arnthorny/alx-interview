@@ -49,12 +49,13 @@ def check_sequence(n, seq):
 
     Return True if valid else False
     """
-    check_byte = 0b10 << 6
+    check_byte = 0b11 << 6
+    s_byte = 0b10 << 6
     bytes_after_first = seq[1:]
     if len(bytes_after_first) + 1 != n:
         return False
-    for val in bytes_after_first:
-        if val & check_byte != check_byte:
+    for byte in bytes_after_first:
+        if byte & check_byte != s_byte:
             return False
 
     return True
