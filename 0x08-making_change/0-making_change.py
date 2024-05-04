@@ -16,7 +16,7 @@ def makeChange(coins, total):
 
     # This array stores the solutions for each sub-problem
     total_1 = total + 1
-    dp_cache = [total_1]  * (total_1)
+    dp_cache = [total_1] * (total_1)
     dp_cache[0] = 0
 
     # Loop through every sub-problem in dp_arr. From index = 0 to index = total
