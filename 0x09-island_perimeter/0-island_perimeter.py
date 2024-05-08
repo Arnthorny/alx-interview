@@ -12,39 +12,31 @@ def island_perimeter(grid):
     no_cols = len(grid[0])
     no_rows = len(grid)
     perimeter = 0
-    visited = set()
 
     for row in range(no_rows):
         for col in range(no_cols):
             if grid[row][col] != 1:
                 continue
 
-            top = None if (row - 1 < 0) else\
-                (None if (grid[row - 1][col] == 1) else (row - 1, col))
+            perimeter += 4
+            top = 0 if (row - 1 < 0) else\
+                (-1 if (grid[row - 1][col] == 1) else 0)
 
-            if top is not None and top not in visited:
-                perimeter += 1
-                visited.add(top)
+            perimeter += top
 
-            down = None if (row + 1 >= no_rows) else \
-                (None if (grid[row + 1][col] == 1) else (row + 1, col))
+            down = 0 if (row + 1 >= no_rows) else \
+                (-1 if (grid[row + 1][col] == 1) else 0)
 
-            if down is not None and down not in visited:
-                perimeter += 1
-                visited.add(down)
+            perimeter += down
 
-            left = None if (col - 1 < 0) else \
-                (None if (grid[row][col - 1] == 1) else (row, col - 1))
+            left = 0 if (col - 1 < 0) else \
+                (-1 if (grid[row][col - 1] == 1) else 0)
 
-            if left is not None and left not in visited:
-                perimeter += 1
-                visited.add(left)
+            perimeter += left
 
-            right = None if (col + 1 >= no_cols) else \
-                (None if (grid[row][col + 1] == 1) else (row, col + 1))
+            right = 0 if (col + 1 >= no_cols) else \
+                (-1 if (grid[row][col + 1] == 1) else 0)
 
-            if right is not None and right not in visited:
-                perimeter += 1
-                visited.add(right)
+            perimeter += right
 
     return perimeter
