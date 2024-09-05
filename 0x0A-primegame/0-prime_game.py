@@ -1,6 +1,19 @@
 #!/usr/bin/python3
 
+"""
+Module containing solution for the prime game
+"""
+
+
 def sieve(n):
+    """This function generates all prime numbers up till n
+
+    Args:
+        n (int): Upper limit
+
+    Returns:
+        list: List of primes
+    """
     sieve_list = [True if x > 1 else False for x in range(n + 1)]
 
     for i in range(int(n ** 0.5)):
@@ -15,6 +28,17 @@ def sieve(n):
 
 
 def determine_round_winner(round_n, who_won_arr):
+    """This function determines the winner for each round
+    It first generates and reverses a list of all primes in the
+    range of round_n
+    The game is on as long primes have not been exhausted
+
+    Args:
+        round_n (int): The number whose range is being used for the
+                        current round
+        who_won_arr (list): An array to hold the state of scores
+                            for Maria and Ben respectively
+    """
     all_primes_in_range = sieve(round_n)
     all_primes_in_range.reverse()
 
@@ -31,6 +55,17 @@ def determine_round_winner(round_n, who_won_arr):
 
 
 def isWinner(x, nums):
+    """This function goes round by round accumulating scores for Ben and Maria
+    and then determine the winner(if there is) at the end.
+
+    Args:
+        x (int): number of rounds
+        nums (list): set of numbers for each round
+
+    Returns:
+        str | None: Name of winner as determined by who_won list
+                    else None if there is a draw
+    """
     who_won = [0, 0]
 
     for rnd in range(x):
