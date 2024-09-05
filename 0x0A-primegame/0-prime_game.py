@@ -2,6 +2,7 @@
 
 """
 Module containing solution for the prime game
+In this variant, there are two players and Maria stars first
 """
 
 
@@ -42,16 +43,20 @@ def determine_round_winner(round_n, who_won_arr):
     all_primes_in_range = sieve(round_n)
     all_primes_in_range.reverse()
 
+    if not all_primes_in_range:  # Maria has nothing to play
+        who_won_arr[1] += 1
+        return
+
     who_is_playing = 0  # Maria starts
 
     while all_primes_in_range:
-        all_primes_in_range.pop()
-        who_is_playing += 1
+        all_primes_in_range.pop()  # Player picks least primes first
+        if all_primes_in_range:
+            who_is_playing += 1
+        else:
+            break
 
-    if who_is_playing == 0:  # Maria had nothing to play
-        who_won_arr[1] += 1
-    else:
-        who_won_arr[who_is_playing % 2] += 1
+    who_won_arr[who_is_playing % 2] += 1
 
 
 def isWinner(x, nums):
