@@ -16,7 +16,7 @@ def sieve(n):
     """
     sieve_list = [True if x > 1 else False for x in range(n + 1)]
 
-    for i in range(int(n ** 0.5)):
+    for i in range(int(n ** 0.5) + 1):
         if sieve_list[i] is False:
             continue
         else:
